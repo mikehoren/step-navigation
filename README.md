@@ -34,6 +34,15 @@ const z = [STEP1, STEP2, STEP3, [
   [STEP4, STEP5],
   [STEP6, STEP7]
 ], STEP8, STEP9, STEP10]
+
+// paths can also be created using objects, the two alloable properties are "name" and "data", "name" is required in this format.
+const d = [
+  { name: STEP1, data: { value: 1 } }, 
+  { name: STEP2, data: { value: 2 } }, 
+  { name: STEP3, data: { value: 3 } }, 
+  { name: STEP4, data: { value: 4 } }
+]
+
 ```
 
 Then call create with the input
@@ -61,12 +70,16 @@ Is true on the last step of the path or the last step of each fork of a path.
 
 The step name as defined by the input array for any given step.
 
+#### path.data
+
+If the data property was specified it can be accessed using this property.
+
 Path Methods
 ------------
 
 #### path.next(value)
 
-Returns the next step in the path. Value is optional, for linear paths it always returns the next step.  If value is omitted for forked paths it returns the first defined fork, otherwise value can the next step in a fork to choose which path to follow. Calling next() on the last step will always return the last step.
+Returns the next step in the path. Value is optional, for linear paths it always returns the next step.  If value is omitted for forked paths it returns the first defined fork, otherwise value should match the next step in a fork to choose which path to follow. Calling next() on the last step will always return the last step.
 
 Forked path example
 

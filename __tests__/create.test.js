@@ -1,6 +1,9 @@
 import {
   create,
 } from '../src'
+import {
+  convertList,
+} from '../src/convertList'
 
 const STEP1 = 'a'
 const STEP2 = 'b'
@@ -24,8 +27,31 @@ const z = [STEP1, STEP2, STEP3, [
   [STEP6, STEP7]
 ], STEP8, STEP9, STEP10]
 
+const d = [
+  { name: STEP1, data: { value: 1 } }, 
+  { name: STEP2, data: { value: 2 } }, 
+  { name: STEP3, data: { value: 3 } }, 
+  { name: STEP4, data: { value: 4 } }
+]
+
 describe('create()', () => {
   
+  describe('empty path', () => {
+
+    it('should return a single path for undefined', () => {
+      const path = create()
+      expect(path.isFirst).toEqual(true)
+      expect(path.name).toEqual('step1')
+    })
+
+    it('should return a single path for an empty array', () => {
+      const path = create([])
+      expect(path.isFirst).toEqual(true)
+      expect(path.name).toEqual('step1')
+    })
+
+  })
+
   describe('Single path', () => {
 
     let path = null
@@ -508,6 +534,26 @@ describe('create()', () => {
         p = p.back()
         expect(p.isLast).toEqual(undefined)
       })
+    })
+
+  })
+
+  describe('flow with data', () => {
+
+    it('should create path from array of objects', () => {
+      let path = create(d)
+      expect(path.matches(STEP1)).toEqual(true)
+    })
+
+    it('data should be retrievable per step', () => {
+      let path = create(d)
+      expect(path.data.value).toEqual(1)
+      path = path.next()
+      expect(path.data.value).toEqual(2)
+      path = path.next()
+      expect(path.data.value).toEqual(3)
+      path = path.next()
+      expect(path.data.value).toEqual(4)
     })
 
   })

@@ -24,6 +24,7 @@ export function generatePath(path, base, root = {}, returnLast = false) {
   if(!base) {
     base = root
     base.name = step.name
+    base.data = step.data
     nextStep = base
   // we're not on the first step
   } else {

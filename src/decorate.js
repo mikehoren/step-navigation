@@ -13,7 +13,7 @@ export function decorate(root, prev, next) {
   // we're on the initial step
   if(!prev) {
     prev = root
-    prev._keys = Object.keys(prev).filter( k => k !== 'name')
+    prev._keys = Object.keys(prev).filter( k => k !== 'name' && k !== 'data')
     prev.isFirst = true
     prev.back = () => root
     prev.next = (value) => prev[value] ? prev[value] : prev[prev._keys[0]]
@@ -28,11 +28,13 @@ export function decorate(root, prev, next) {
       })
     } else if(prev._keys.length === 1) {
       return decorate(root, prev, prev[prev._keys[0]])
+    } else {
+      return prev
     }
 
   // all other steps other than initial
   } else {
-    next._keys = Object.keys(next).filter( k => k !== 'name')
+    next._keys = Object.keys(next).filter( k => k !== 'name' && k !== 'data')
     next.back = () => prev
     next.next = (value) => next[value] ? next[value] : next[next._keys[0]]
     next.matches = (value) => value === next.name

@@ -11,8 +11,9 @@ import { decorate } from './decorate'
 
 export function create(path, root = {}) {
 
-  if(!Array.isArray(path)) {
-    return root
+  if(!Array.isArray(path) || path.length === 0) {
+    root.name = root.name || 'step1'
+    return decorate(root, null, null)
   }
 
   path = convertList(path)
