@@ -1,3 +1,9 @@
+// @method convertList
+// @description convertst a list to a list of objects to be used in path generation
+// @params
+// - list [Array] a path array
+// @returns [Array] a formatted path array used to generate a path object
+
 export function convertList(list) {
   return list.map( v => {
     if(typeof v === 'string') {
