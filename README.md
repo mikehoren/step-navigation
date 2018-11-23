@@ -6,7 +6,7 @@ This is prototype code attempting to create an abstraction to better manage navi
 Usage
 -----
 
-The input for the create() method expects an array of steps with subarrays when you wish to fork the paths into two or more different paths. Below are examples input arrays.
+The input for the create() method expects an array of steps with subarrays when you wish to fork the paths into two or more different paths. Below are example input arrays.
 
 ```javascript
 const STEP1 = 'a'
