@@ -35,7 +35,7 @@ const z = [STEP1, STEP2, STEP3, [
   [STEP6, STEP7]
 ], STEP8, STEP9, STEP10]
 
-// paths can also be created using objects, the two alloable properties are "name" and "data", "name" is required in this format.
+// paths can also be created using objects, the two allowable properties are "name" and "data", "name" is required in this format.
 const d = [
   { name: STEP1, data: { value: 1 } }, 
   { name: STEP2, data: { value: 2 } }, 
